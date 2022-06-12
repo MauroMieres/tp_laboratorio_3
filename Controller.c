@@ -94,13 +94,22 @@ int controller_addPassenger(LinkedList* pArrayListPassenger,char* path)
 	char codigoVuelo[15];
 	char statusFlight[15];
 	int todoOk = 0;
+	int tam;
 	if(pArrayListPassenger != NULL){
 
 		 FILE* pFile;
-		 pFile = fopen(path, "r");
-		 id = passenger_getMaxId(pFile);
-		 id++;
+		 pFile = fopen(path,"r");
 
+		 tam = ll_len(pArrayListPassenger);
+		 if(tam==0)
+		 {
+			 id=passenger_getMaxId(pFile)+1;
+		 }
+		 else
+		 {
+			 id = controller_IdSiguiente(pArrayListPassenger);
+			 id++;
+		 }
 		   printf("***Add Passenger***\n\n");
 
 		   getAlphabetic_Characters_String(nombre,"Ingresar nombre: ","Nombre muy largo, reingrese: ",51);
