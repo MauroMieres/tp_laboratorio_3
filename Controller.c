@@ -81,7 +81,7 @@ int controller_loadFromBinary(char* path , LinkedList* pArrayListPassenger)
  * \return int
  *
  */
-int controller_addPassenger(LinkedList* pArrayListPassenger)
+int controller_addPassenger(LinkedList* pArrayListPassenger,char* path)
 {
 	Passenger* newPassenger = NULL;
 	int id;
@@ -94,18 +94,13 @@ int controller_addPassenger(LinkedList* pArrayListPassenger)
 	char codigoVuelo[15];
 	char statusFlight[15];
 	int todoOk = 0;
-	int tam;
 	if(pArrayListPassenger != NULL){
 
-	tam = ll_len(pArrayListPassenger);
-	if(tam==0)
-	{
-		id=tam+1;
-	}
-	else{
-		id = controller_IdSiguiente(pArrayListPassenger);
-		id++;
-	}
+		 FILE* pFile;
+		 pFile = fopen(path, "r");
+		 id = passenger_getMaxId(pFile);
+		 id++;
+
 		   printf("***Add Passenger***\n\n");
 
 		   getAlphabetic_Characters_String(nombre,"Ingresar nombre: ","Nombre muy largo, reingrese: ",51);

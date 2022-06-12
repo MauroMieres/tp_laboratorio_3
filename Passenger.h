@@ -47,4 +47,6 @@ int Passenger_getPrecio(Passenger* this,float* precio);
 
 void Passenger_header(void);
 
+int passenger_getMaxId(FILE* pFile);
+
 #endif /* PASSENGER_H_ */

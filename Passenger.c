@@ -209,3 +209,41 @@ void Passenger_header(void)
 	printf(" ID     NOMBRE          APELLIDO        PRECIO          CODIGO VUELO            TIPO PASAJERO   ESTADO DE VUELO\n");
 	printf("---------------------------------------------------------------------------------------------------------------\n");
 }
+
+int passenger_getMaxId(FILE* pFile)
+{
+	int maxId=0;
+	Passenger* pAuxPassenger = NULL;
+	int r=0;
+	char var1[50],var2[50],var3[50],var4[50],var5[50],var6[50],var7[50];
+	pFile = fopen("data.csv","r");
+	if(pFile == NULL)
+	{
+		printf("Archivo nulo");
+	}
+	else
+	{
+	//lectura fantasma
+	fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",var1,var2,var3,var4,var5,var6,var7);
+	//printf("%s	%s	%s	%s	%s	%s	%s\n\n",var1,var2,var3,var4,var5,var6,var7);
+
+	while(!feof(pFile))
+	{
+
+		r = fscanf(pFile,"%[^,],%[^,],%[^,],%[^,],%[^,],%[^,],%[^\n]\n",var1,var2,var3,var4,var5,var6,var7);
+		if(r<7)
+		{
+			break;
+		}
+
+		pAuxPassenger = Passenger_newParametros(var1,var2,var3,var4,var5,var6,var7);
+
+		if(pAuxPassenger!=NULL)
+		{
+			maxId++;
+		}
+	}
+	  fclose(pFile);
+	}
+	  return maxId;
+}

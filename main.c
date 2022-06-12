@@ -38,7 +38,7 @@ int main()
         			contadorPasajeros = ll_len(listaPasajeros);
         			break;
         		case 3:
-        			controller_addPassenger(listaPasajeros);
+        			controller_addPassenger(listaPasajeros,"data.csv");
         			contadorPasajeros = ll_len(listaPasajeros);
         			break;
         		case 4:
