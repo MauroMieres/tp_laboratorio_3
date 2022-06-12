@@ -97,12 +97,11 @@ int controller_addPassenger(LinkedList* pArrayListPassenger,char* path)
 	int tam;
 	if(pArrayListPassenger != NULL){
 
-		 FILE* pFile;
-		 pFile = fopen(path,"r");
-
 		 tam = ll_len(pArrayListPassenger);
 		 if(tam==0)
 		 {
+			 FILE* pFile;
+			 pFile = fopen(path,"r");
 			 id=passenger_getMaxId(pFile)+1;
 		 }
 		 else
